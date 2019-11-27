@@ -1,0 +1,58 @@
+.indexNumberTitle {
+  width:272px;
+  height:48px;
+  font-size:34px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:48px;
+  margin: 20px 35px 28px;
+}
+.indexNumberBody {
+  margin: 28px 30px 42px;
+  position: relative;
+  > span {
+    position: absolute;
+    display: block;
+    height: 88px;
+    width: 88px;
+    border-radius:4px;
+    border:2px solid rgba(247,64,3,1);
+    z-index: -1;
+    line-height: 88px;
+    text-align: center;
+  }
+  > span:nth-child(1) {
+    left: 0;
+  }
+  > span:nth-child(2) {
+    left: 108px;
+  }
+  > span:nth-child(3) {
+    left: 216px;
+  }
+  > span:nth-child(4) {
+    left: 324px;
+  }
+  > span:nth-child(5) {
+    left: 432px;
+  }
+}
+.indexNumberContent {
+  width: 520px;
+  display: inline-block;
+  letter-spacing: 88px;
+  margin-right: 20px;
+}
+.indexNumberButton {
+  display: inline-block;
+  width:150px;
+  height:88px;
+  background:rgba(255,90,15,1);
+  border-radius:11px;
+  line-height: 88px;
+  font-size:34px;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+}

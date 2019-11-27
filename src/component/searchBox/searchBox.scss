@@ -1,0 +1,31 @@
+.searchBox {
+  height: 120px;
+  width: 750px;
+  border-bottom: 1px #F6F6F6 solid;;
+  .searchBody {
+    width: 710px;
+    height: 78px;
+    margin: 20px 20px 22px 20px;
+    border: 1px #E9E9E9 solid;
+    border-radius: 44px;
+    background-color: #F6F6F6;
+    position: relative;
+
+    .searchContent {
+      width: 600px;
+      font-size: 30px;
+      line-height: 42px;
+      position: absolute;
+      top: 16px;
+      left: 98px;
+    }
+
+    .searchButton {
+      height: 50px;
+      width: 50px;
+      position: absolute;
+      top: 15px;
+      left: 37px;
+    }
+  }
+}
