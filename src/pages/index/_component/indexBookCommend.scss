@@ -1,0 +1,35 @@
+.indexBookCommendBox {
+  .indexBookCommendTitle {
+    position: relative;
+    height: 60px;
+    border-bottom: 3px solid #F5F5F5;
+    .indexBookCommendTitleLeft {
+      width:120px;
+      height:42px;
+      font-size:30px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(0,0,0,1);
+      line-height:42px;
+      position: absolute;
+      top: 0;
+      left: 30px;
+    }
+    .indexBookCommendTitleRight {
+      display: inline-block;
+      width:112px;
+      height:40px;
+      font-size:28px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(93,93,93,1);
+      line-height:40px;
+      position: absolute;
+      top: 0;
+      right: 30px;
+    }
+  }
+  .indexBookCommendBody {
+    position: relative;
+  }
+}

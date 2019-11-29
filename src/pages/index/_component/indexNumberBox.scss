@@ -39,10 +39,13 @@
   }
 }
 .indexNumberContent {
-  width: 520px;
+  width: 1040px; // 宽度*2 
+  height: 88px;
   display: inline-block;
-  letter-spacing: 88px;
-  margin-right: 20px;
+  margin-right: 190px; // 加大右边距
+  text-indent: 999px; // 缩进
+  outline:none; // 移除边框
+  margin-left: -100%; // 加注释的css是为了隐藏input
 }
 .indexNumberButton {
   display: inline-block;

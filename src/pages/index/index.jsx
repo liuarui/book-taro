@@ -6,6 +6,7 @@ import SearchBox from '../../component/searchBox/searchBox'
 // 私有组件引入
 import IndexSwiper from './_component/indexSwiper'
 import IndexNumberBox from './_component/indexNumberBox'
+import IndexBookCommend from './_component/indexBookCommend'
 export default class Index extends Component {
 
   config = {
@@ -28,10 +29,8 @@ export default class Index extends Component {
         <SearchBox/>
         <IndexSwiper/>
         <IndexNumberBox/>
-        <View>
-          <View>图书推荐头部块</View>
-          <View>图书推荐列表</View>
-          </View>
+        <IndexBookCommend/>
+        <View>弹窗块</View>
       </View>
     )
   }
