@@ -1,7 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Button } from '@tarojs/components'
+import { View, Text, Input, Button, Image } from '@tarojs/components'
 import './indexBookCommend.scss'
-
+import bookImage from '../../../images/bookDetails/book.png'
+// import BookBox from '../../../component/bookBox/bookBox'
 export default class IndexBookCommend extends Component {
   constructor(props) {
     super(props)
@@ -14,7 +15,30 @@ export default class IndexBookCommend extends Component {
         <Navigator className="indexBookCommendTitleRight">查看更多</Navigator>
        </View>
        <View className="indexBookCommendBody">
-         图书列表块
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
+        <View className="indexBookCommendBodyImage">
+          <Image className="BodyImageTop" src={ bookImage }></Image>
+          <View className="BodyImageBottom">儿童文学书籍</View>
+        </View>
        </View>
       </View>
     )

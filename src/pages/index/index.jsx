@@ -29,7 +29,7 @@ export default class Index extends Component {
         <SearchBox/>
         <IndexSwiper/>
         <IndexNumberBox/>
-        <IndexBookCommend/>
+        <IndexBookCommend/> 
         <View>弹窗块</View>
       </View>
     )
