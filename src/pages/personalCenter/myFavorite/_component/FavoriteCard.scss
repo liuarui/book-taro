@@ -1,0 +1,52 @@
+.favoriteCardBox {
+  width:750px;
+  height:400px;
+  background:rgba(255,255,255,1);
+  border-top: 20px solid #E3E3E3;
+  border-bottom: 20px solid #E3E3E3;
+  position: relative;
+  .favoriteCardImage {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 220px;
+    height: 298px;
+  }
+  .favoriteCardRight {
+    position: absolute;
+    overflow: hidden;
+    width: 365px;
+    left: 290px;
+    top: 50px;
+    .favoriteCardTitle {
+      width:200px;
+      height:56px;
+      font-size:40px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(0,0,0,1);
+      line-height:56px;
+    }
+    .favoriteCardAut {
+      width:308px;
+      height:37px;
+      font-size:26px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(112,112,112,1);
+      line-height:37px;
+    }
+    .favoriteCardIntro {
+      width:365px;
+      height:111px;
+      font-size:26px;
+      font-family:PingFangSC-Regular,PingFang SC;
+      font-weight:400;
+      color:rgba(112,112,112,1);
+      line-height:37px;
+      white-space: wrap;/*内容超宽后禁止换行显示*/
+      overflow: hidden;/*超出部分隐藏*/
+      text-overflow:ellipsis;/*文字超出部分以省略号显示*/
+    }
+  }
+}

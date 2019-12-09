@@ -1,0 +1,60 @@
+import Taro, { Component } from '@tarojs/taro'
+import { View, Text, Image } from '@tarojs/components'
+import './login.scss'
+// taro-ui引入
+import { AtRadio, AtButton } from 'taro-ui'
+// 公有组件引入
+import bgImage from '../../images/login/loginbg.png'
+// 私有组件引入
+
+export default class Login extends Component {
+  config = {
+    navigationBarTitleText: '登陆页'
+  }
+  constructor () {
+    super(...arguments)
+    this.state = {
+      value: ''
+    }
+  }
+  handleChange (value) {
+    this.setState({
+      value
+    })
+  }
+
+  componentWillMount () { }
+  
+  componentDidMount () { }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { }
+
+  componentDidHide () { }
+
+  render () {
+    return (
+  
+      <View className='loginBox'>
+        <Image  className='loginBG' src={ bgImage }></Image>
+        <View className='loginText1'>欢迎来到墨秀图书，请选择身份！</View>
+        <View className='loginText2'>便于获取想要的内容</View>
+        <View>
+          <View className='loginRadioBox'>
+            <AtRadio
+              className='loginRadio'
+              options={[
+                { label: '家长', value: 'option1' },
+                { label: '园长', value: 'option2' },
+              ]}
+              value={this.state.value}
+              onClick={this.handleChange.bind(this)}
+            />
+          </View>
+          <AtButton className='loginButton'>确认身份</AtButton>
+        </View>
+      </View>
+    )
+  }
+}

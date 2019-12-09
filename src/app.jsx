@@ -13,9 +13,18 @@ class App extends Component {
 
   config = {
     pages: [
+      // 推荐主页块
       'pages/index/index',
-      'pages/bookDetails/bookDetails',
-      'pages/videoDetails/videoDetails'
+      'pages/index/bookDetails/bookDetails',
+      'pages/index/videoDetails/videoDetails',
+      // 登陆块
+      'pages/login/login',
+      // 个人信息块
+      'pages/personalCenter/PersonalCenter',
+      'pages/personalCenter/aboutUs/aboutUs',
+      'pages/personalCenter/myFavorite/myFavorite',
+      'pages/personalCenter/principalApprove/principalApprove',
+      'pages/personalCenter/personalInfor/personalInfor',
     ],
     window: {
       backgroundTextStyle: 'light',

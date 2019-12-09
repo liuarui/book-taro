@@ -1,0 +1,30 @@
+.aboutUsBox {
+  margin: 0 30px;
+  position: relative;
+}
+.aboutUsTitle {
+  text-indent: 60px;
+  height:179px;
+  font-size:30px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(81,75,75,1);
+  line-height:46px;
+  margin-bottom: 29px;
+}
+.aboutUsImage {
+  position: relative;
+  left: 50%;
+  width:690px;
+  height:458px;
+  transform: translateX(-50%);
+  margin-bottom: 26px;
+}
+.aboutUsIntro {
+  margin-bottom: 15px;
+  font-size:30px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(81,75,75,1);
+  line-height:46px;
+}

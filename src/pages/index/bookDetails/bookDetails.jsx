@@ -1,11 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import './bookDetails.scss'
-import imageSrc from '../../images/bookDetails/book.png'
-import saveButton from '../../images/bookDetails/saveButton.png'
-import sortButton from '../../images/bookDetails/sortButton.png'
+import imageSrc from '../../../images/bookDetails/book.png'
+import saveButton from '../../../images/bookDetails/saveButton.png'
+import sortButton from '../../../images/bookDetails/sortButton.png'
 // 公有组件引入
-import DetailsCard from '../../component/detailsCard/detailsCard'
+import DetailsCard from '../../../component/detailsCard/detailsCard'
 // 私有组件引入
 
 export default class BookDetails extends Component {
@@ -15,7 +15,7 @@ export default class BookDetails extends Component {
   }
 
   componentWillMount () { }
-
+  
   componentDidMount () { }
 
   componentWillUnmount () { }
