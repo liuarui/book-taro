@@ -11,7 +11,7 @@ export default class FavoriteCard extends Component {
   render() {
     return (
       // 这里需要调用接口请求后端数据，进行渲染 TODO
-      <View className="favoriteCardBox" style={ boxSize }>
+      <View className="favoriteCardBox">
         <Image className='favoriteCardImage'></Image>
         <View className='favoriteCardRight'>
           <View className='favoriteCardTitle'></View>
