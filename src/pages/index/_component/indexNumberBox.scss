@@ -59,3 +59,20 @@
   font-weight:600;
   color:rgba(255,255,255,1);
 }
+.indexNumberToast {
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+  height: 50px;
+  padding: 10px 50px 10px;
+  background-color: rgba(0,0,0,0.8);
+  color: #fff;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.ToastNo{
+  visibility: hidden;
+}

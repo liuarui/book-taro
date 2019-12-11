@@ -17,6 +17,9 @@ class App extends Component {
       'pages/index/index',
       'pages/index/bookDetails/bookDetails',
       'pages/index/videoDetails/videoDetails',
+      // 分类块
+      'pages/category/Category',
+      'pages/category/searchPage/searchPage',
       // 登陆块
       'pages/login/login',
       // 个人信息块

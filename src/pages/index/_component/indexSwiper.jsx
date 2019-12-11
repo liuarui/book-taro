@@ -3,9 +3,6 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
 import './indexSwiper.scss'
 import image1 from '../../../images/indexSwiper/1.png'
-import image2 from '../../../images/indexSwiper/2.png'
-import image3 from '../../../images/indexSwiper/3.png'
-import image4 from '../../../images/indexSwiper/4.png'
 export default class IndexSwiper extends Component {
   render () {
     return (
@@ -22,13 +19,13 @@ export default class IndexSwiper extends Component {
           <Image src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image2}></Image>
+          <Image src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image3}></Image>
+          <Image src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image4}></Image>
+          <Image src={image1}></Image>
         </SwiperItem>
       </Swiper>
     )

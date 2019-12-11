@@ -1,6 +1,6 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
-import { AtInput, AtForm, AtImagePicker } from "taro-ui";
+import { AtInput, AtForm, AtImagePicker, AtButton } from "taro-ui";
 import "./principalApprove.scss";
 // 公有组件引入
 
@@ -37,6 +37,9 @@ export default class PrincipalApprove extends Component {
   onImageClick(index, file) {
     console.log(index, file);
   }
+  onSubmit (event) {
+    console.log(event)
+  }
   config = {
     navigationBarTitleText: "园长认证"
   };
@@ -54,7 +57,9 @@ export default class PrincipalApprove extends Component {
   render() {
     return (
       <View className="principalApprove">
-        <AtForm>
+        <AtForm
+          onSubmit={this.onSubmit.bind(this)}
+        >
           <AtInput
             clear
             name="phoneNumber"
@@ -105,6 +110,7 @@ export default class PrincipalApprove extends Component {
             <View className='imageText1'>请上传照片或者拍照取图，方便确认</View>
             <View  className='imageText2'>墨秀会确保您的隐私安全</View>
           </View>
+          <AtButton formType='submit' className='approveSubmitButton'>确定</AtButton>
         </AtForm>
       </View>
     );

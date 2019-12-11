@@ -1,0 +1,63 @@
+.personalInfor {
+  background-color: #F5F5F5;
+}
+.headerImageBox {
+  width: 750px;
+  height: 120px;
+  background: rgba(255, 255, 255, 1);
+  position: relative;
+  margin-bottom: 20px;
+  .imageTitle {
+    position: absolute;
+    top: 39px;
+    left: 30px;
+    width: 60px;
+    height: 42px;
+    font-size: 30px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    line-height: 42px;
+  }
+
+  .imageContent {
+    position: absolute;
+    top: 10px;
+    right: 36px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+
+.nameBox {
+  width: 750px;
+  height: 88px;
+  background: rgba(255, 255, 255, 1);
+  position: relative;
+
+  .nameTitle {
+    position: absolute;
+    top: 23px;
+    left: 30px;
+    width: 60px;
+    height: 42px;
+    font-size: 30px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    line-height: 42px;
+  }
+
+  .nameContent {
+    position: absolute;
+    top: 23px;
+    right: 36px;
+    height: 42px;
+    font-size: 30px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 1);
+    line-height: 42px;
+  }
+}

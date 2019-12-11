@@ -23,7 +23,11 @@ export default class BookDetails extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-
+  toCategory() {
+    Taro.redirectTo({
+      url: '/pages/category/Category'
+    })
+  }
   render () {
     return (
       <View className='bookDetailsBox'>
@@ -41,7 +45,7 @@ export default class BookDetails extends Component {
         <DetailsCard title='简介' content='sss'/>
         <DetailsCard title='目录' content='sss'/>
         <View className='bookDetailsBottomNav'>
-          <View className='sortButton'>
+          <View className='sortButton' onClick={ this.toCategory }>
             <Image src={sortButton} className='sortButtonImage'></Image>
             <Text className='sortButtonText'>分类</Text>
           </View>

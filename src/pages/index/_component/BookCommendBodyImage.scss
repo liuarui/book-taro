@@ -1,0 +1,20 @@
+.indexBookCommendBodyImage {
+  width: 235px;
+  height: 403px;
+  border: 1px solid rgba(245,245,245,1);
+  position: relative;
+  .BodyImageTop {
+    margin: 17px 20px 26px;
+    width: 209px;
+    height: 285px;
+  }
+  .BodyImageBottom {
+    margin: 0 25px 0px 31px;
+    width: 193px;
+    font-size:28px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(34,32,32,1);
+    line-height:40px;
+  }
+}
