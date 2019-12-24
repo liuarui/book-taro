@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Text } from "@tarojs/components";
+import { View, Text, Button } from "@tarojs/components";
 import { AtInput, AtForm, AtImagePicker, AtButton } from "taro-ui";
 import "./principalApprove.scss";
 // 公有组件引入
@@ -12,7 +12,6 @@ export default class PrincipalApprove extends Component {
     this.state = {
       phoneNumber: "",
       authCode: "",
-      email: "",
       files: [
       ]
     };
@@ -88,16 +87,6 @@ export default class PrincipalApprove extends Component {
               </Button>
             )}
           </AtInput>
-          <AtInput
-            clear
-            name="email"
-            title="邮箱号"
-            type="text"
-            maxLength="30"
-            placeholder="邮箱号"
-            value={this.state.email}
-            onChange={this.handleChange.bind(this)}
-          ></AtInput>
           <AtImagePicker
             files={this.state.files}
             onChange={this.onChange.bind(this)}

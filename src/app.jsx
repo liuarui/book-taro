@@ -22,6 +22,7 @@ class App extends Component {
       'pages/category/searchPage/searchPage',
       // 登陆块
       'pages/login/login',
+      'pages/login/userLogin',
       // 个人信息块
       'pages/personalCenter/PersonalCenter',
       'pages/personalCenter/aboutUs/aboutUs',

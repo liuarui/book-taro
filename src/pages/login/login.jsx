@@ -1,21 +1,21 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
-import './login.scss'
+import { View, Image } from '@tarojs/components'
 // taro-ui引入
 import { AtRadio, AtButton } from 'taro-ui'
-// 公有组件引入
+import './login.scss'
 import bgImage from '../../images/login/loginbg.png'
+// 公有组件引入
 // 私有组件引入
 
 export default class Login extends Component {
-  config = {
-    navigationBarTitleText: '登陆页'
-  }
   constructor () {
     super(...arguments)
     this.state = {
       value: ''
     }
+  }
+  config = {
+    navigationBarTitleText: '登陆页'
   }
   handleChange (value) {
     this.setState({
@@ -37,7 +37,7 @@ export default class Login extends Component {
     return (
   
       <View className='loginBox'>
-        <Image  className='loginBG' src={ bgImage }></Image>
+        <Image  className='loginBG' src={bgImage}></Image>
         <View className='loginText1'>欢迎来到墨秀图书，请选择身份！</View>
         <View className='loginText2'>便于获取想要的内容</View>
         <View>

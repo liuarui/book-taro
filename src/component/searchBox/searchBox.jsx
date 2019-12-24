@@ -13,7 +13,7 @@ export default class SearchBox extends Component {
   }
   render() {
     return (
-      <View className="searchBox" onClick={this.toJumpUrl}>
+      <View className="searchBox" onClick={this.toJumpUrl.bind(this)}>
         <View className="searchBody">
           <Image  src={ searchButton } className="searchButton"/>
           <Input

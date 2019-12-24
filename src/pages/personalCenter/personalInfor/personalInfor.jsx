@@ -1,10 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import './personalInfor.scss'
 // 公有组件引入
 
 // 私有组件引入
 import logo from '../../../images/personalCenter/personalCenterLogo.png'
+
 export default class PersonalInfor extends Component {
 
   config = {
