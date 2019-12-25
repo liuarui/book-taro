@@ -1,10 +1,11 @@
 import Taro, { Component } from '@tarojs/taro'
 // 引入 Swiper, SwiperItem 组件
-import { View, Swiper, SwiperItem, Image } from '@tarojs/components'
-import './indexSwiper.scss'
+import { Swiper, SwiperItem, Image } from '@tarojs/components'
 import image1 from '../../../images/indexSwiper/1.png'
+import './indexSwiper.scss'
+
 export default class IndexSwiper extends Component {
-  render () {
+  render() {
     return (
       <Swiper
         className='swiperBox'
@@ -14,7 +15,7 @@ export default class IndexSwiper extends Component {
         indicatorActiveColor='#333'
         circular
         indicatorDots
-        autoplay>
+      >
         <SwiperItem>
           <Image src={image1}></Image>
         </SwiperItem>

@@ -1,26 +1,25 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, Video  } from '@tarojs/components'
+import { View, Video } from '@tarojs/components'
 import './videoDetails.scss'
 // 公有组件引入
 import DetailsCard from '../../../component/detailsCard/detailsCard'
 // 私有组件引入
 export default class VideoDetails extends Component {
-
   config = {
     navigationBarTitleText: '视频详情'
   }
 
-  componentWillMount () { }
+  // componentWillMount() {}
 
-  componentDidMount () { }
+  // componentDidMount() {}
 
-  componentWillUnmount () { }
+  // componentWillUnmount() {}
 
-  componentDidShow () { }
+  // componentDidShow() {}
 
-  componentDidHide () { }
+  // componentDidHide() {}
 
-  render () {
+  render() {
     return (
       <View className='videoDetailsBox'>
         <View className='videoDetailsCore'>
@@ -29,7 +28,6 @@ export default class VideoDetails extends Component {
         <DetailsCard title='简介' content='sss' />
         <DetailsCard title='目录' content='sss' />
         <DetailsCard title='图书推荐' content='sss' />
-       
       </View>
     )
   }

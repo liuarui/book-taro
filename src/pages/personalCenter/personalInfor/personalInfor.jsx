@@ -7,27 +7,25 @@ import './personalInfor.scss'
 import logo from '../../../images/personalCenter/personalCenterLogo.png'
 
 export default class PersonalInfor extends Component {
+  componentWillMount() {}
 
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  componentDidShow() {}
+
+  componentDidHide() {}
   config = {
     navigationBarTitleText: '个人信息'
   }
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
+  render() {
     return (
       <View className='personalInfor'>
         <View className='headerImageBox'>
           <Text className='imageTitle'>头像</Text>
-          <Image src={ logo } className='imageContent'></Image>
+          <Image src={logo} className='imageContent'></Image>
         </View>
         <View className='nameBox'>
           <Text className='nameTitle'>昵称</Text>

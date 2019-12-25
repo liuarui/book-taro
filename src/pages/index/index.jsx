@@ -12,21 +12,22 @@ import BottomNav from '../../component/BottomNav/BottomNav'
 import Curtain from '../../component/Curtain/Curtain'
 
 export default class Index extends Component {
-  constructor () {
-  super(...arguments)
+  constructor() {
+    super(...arguments)
     this.state = {
       current: 0,
-      loginState: true
+      loginState: true,// 登陆状态
     }
   }
-  componentWillMount () {
-    if(!this.state.loginState){
+  componentWillMount() {
+    // 未登录将跳转登录页
+    if (!this.state.loginState) {
       Taro.redirectTo({
         url: '/pages/login/userLogin'
       })
     }
   }
-  handleClick (value) {
+  handleClick(value) {
     this.setState({
       current: value
     })
@@ -34,13 +35,13 @@ export default class Index extends Component {
   config = {
     navigationBarTitleText: '首页'
   }
-  render () {
+  render() {
     return (
       <View className='index'>
         <SearchBox jumpUrl='/pages/category/searchPage/searchPage' />
         <IndexSwiper />
         <IndexNumberBox />
-        <IndexBookCommend /> 
+        <IndexBookCommend />
         <Curtain content='请输入正确编号' />
         <BottomNav pageNumber={0} />
       </View>

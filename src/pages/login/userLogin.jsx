@@ -1,12 +1,12 @@
-import Taro from "@tarojs/taro";
-import { AtForm, AtInput, AtButton } from "taro-ui";
+import Taro from '@tarojs/taro'
+import { AtForm, AtInput, AtButton } from 'taro-ui'
 
 export default class UserLogin extends Taro.Component {
   constructor() {
-    super(...arguments);
+    super(...arguments)
     this.state = {
-      username: "admin",
-      password: "admin"
+      username: 'admin',
+      password: 'admin'
     }
   }
 
@@ -24,7 +24,7 @@ export default class UserLogin extends Taro.Component {
   }
   onSubmit() {
     Taro.request({
-      method: "POST",
+      method: 'POST',
       url: 'http://localhost:8080/login',
       data: {
         username: this.state.username,
@@ -34,15 +34,19 @@ export default class UserLogin extends Taro.Component {
         'content-type': 'application/x-www-form-urlencoded'
       },
       mode: 'cors',
-      credentials: 'include',
-      success (res) {
-        Taro.redirectTo({
-          url: `/pages/login/login`
-        })
-        console.log(res.data)
+      success: (res)=> {
+        console.log(res)
       }
-    }).catch((e) => {
-      return e
+      // credentials: 'omit'
+    }).then(res => {
+      console.log(res)
+      let cookies = res.header['Set-Cookie'].replace(/,/g, ';')
+      console.log('=======', cookies)
+      Taro.setStorageSync('Cookies', cookies)
+      Taro.redirectTo({
+        url: `/pages/login/login`
+      })
+      console.log(res)
     })
   }
   render() {
@@ -63,8 +67,10 @@ export default class UserLogin extends Taro.Component {
           value={this.state.value}
           onChange={this.handlePassWordChange.bind(this)}
         />
-        <AtButton formType='submit' onClick={this.onSubmit.bind(this)}>提交</AtButton>
+        <AtButton  onClick={this.onSubmit.bind(this)}>
+          提交
+        </AtButton>
       </AtForm>
-    );
+    )
   }
 }

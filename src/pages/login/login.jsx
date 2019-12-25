@@ -8,36 +8,36 @@ import bgImage from '../../images/login/loginbg.png'
 // 私有组件引入
 
 export default class Login extends Component {
-  constructor () {
+  constructor() {
     super(...arguments)
     this.state = {
-      value: ''
+      identity: ''
     }
   }
   config = {
     navigationBarTitleText: '登陆页'
   }
-  handleChange (value) {
+  handleChange(value) {
     this.setState({
-      value
+      identity: value
     })
   }
-
-  componentWillMount () { }
-  
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
+  jumpIndex() {
+    console.log(this.state.identity)
+    if(this.state.identity === 'easyUser'){
+      Taro.navigateTo({
+        url: '/pages/index/index'
+      })
+    } else if(this.state.identity === 'highUser') {
+      Taro.navigateTo({
+        url: '/pages/personalCenter/principalApprove/principalApprove'
+      })
+    }
+  }
+  render() {
     return (
-  
       <View className='loginBox'>
-        <Image  className='loginBG' src={bgImage}></Image>
+        <Image className='loginBG' src={bgImage}></Image>
         <View className='loginText1'>欢迎来到墨秀图书，请选择身份！</View>
         <View className='loginText2'>便于获取想要的内容</View>
         <View>
@@ -45,14 +45,14 @@ export default class Login extends Component {
             <AtRadio
               className='loginRadio'
               options={[
-                { label: '家长', value: 'option1' },
-                { label: '园长', value: 'option2' },
+                { label: '家长', value: 'easyUser' },
+                { label: '园长', value: 'highUser' }
               ]}
-              value={this.state.value}
+              value={this.state.identity}
               onClick={this.handleChange.bind(this)}
             />
           </View>
-          <AtButton className='loginButton'>确认身份</AtButton>
+          <AtButton className='loginButton' onClick={this.jumpIndex.bind(this)}>确认身份</AtButton>
         </View>
       </View>
     )

@@ -1,5 +1,5 @@
-import Taro, { Component } from "@tarojs/taro";
-import { View, Text, Input } from "@tarojs/components";
+import Taro, { Component } from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import './bookBox.scss'
 
 let boxSize = {
@@ -10,10 +10,8 @@ let boxSize = {
 export default class BookBox extends Component {
   render() {
     return (
-      <View className="bookBox" style={ boxSize }>
-        <View className="bookBody">
-          1
-        </View>
+      <View className='bookBox' style={boxSize}>
+        <View className='bookBody'>1</View>
       </View>
     )
   }

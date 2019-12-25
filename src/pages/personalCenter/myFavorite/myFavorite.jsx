@@ -1,27 +1,27 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import './myFavorite.scss'
 // 公有组件引入
 
 // 私有组件引入
 import FavoriteCard from './_component/FavoriteCard'
-export default class MyFavorite extends Component {
 
+export default class MyFavorite extends Component {
   config = {
     navigationBarTitleText: '我的收藏'
   }
 
-  componentWillMount () { }
+  // componentWillMount() {}
 
-  componentDidMount () { }
+  // componentDidMount() {}
 
-  componentWillUnmount () { }
+  // componentWillUnmount() {}
 
-  componentDidShow () { }
+  // componentDidShow() {}
 
-  componentDidHide () { }
+  // componentDidHide() {}
 
-  render () {
+  render() {
     return (
       <View className='myFavoriteBox'>
         <View className='myFavoriteText'>发现好书，加入收藏，随时查看</View>

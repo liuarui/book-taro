@@ -22,41 +22,44 @@ export default class BookDetails extends Component {
       bookPublishTime: '出版时间：2018-04-01',
       bookIsbn: '9787533952099',
       bookIntroduction: '我是默认简介',
-      bookStar: false,
+      bookStar: false
     }
+    this.componentWillMount = this.componentWillMount.bind(this)
   }
-  componentWillMount () { 
-    console.log(this.state.bookId)// 路由传过来的图书id
+  componentWillMount() {
+    let cookie = Taro.getStorageSync('Cookies')
+    console.log(this.state.bookId) // 路由传过来的图书id
     Taro.request({
       method: 'POST',
       url: `http://localhost:8080/book/${this.state.bookId}`,
       mode: 'cors',
+      header: { Cookie: cookie, 'content-type': 'application/json' },
       credentials: 'include',
-      success (res) {
+      success: res => {
         this.setState({
-          bookName: res.value.name,
-          imagePath: res.value.coverPath,
-          bookPrice: res.value.price,
-          bookAuthor: res.value.author,
-          bookPublisher: res.value.publisher,
-          bookPublishTime: res.value.publishTime,
-          bookIsbn: res.value.isbn,
-          bookIntroduction: res.value.introduction,
-          bookStar: res.value.star,
+          bookName: res.name,
+          imagePath: res.coverPath,
+          bookPrice: res.price,
+          bookAuthor: res.author,
+          bookPublisher: res.publisher,
+          bookPublishTime: res.publishTime,
+          bookIsbn: res.isbn,
+          bookIntroduction: res.introduction,
+          bookStar: res.star
         })
       }
     }).catch(() => {
       console.log('图书信息未存在')
     })
-    }
+  }
 
-  componentDidMount () { }
+  componentDidMount() {}
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
   config = {
     navigationBarTitleText: '图书详情'
   }
@@ -67,21 +70,35 @@ export default class BookDetails extends Component {
     })
   }
   // 收藏逻辑
-  starBook() {
-
-  }
-  render () {
+  starBook() {}
+  render() {
     return (
       <View className='bookDetailsBox'>
         <View className='bookDetailsCore'>
-          <Image src={this.state.imagePath} className='bookDetailsImage'></Image>
+          <Image
+            src={this.state.imagePath}
+            className='bookDetailsImage'
+          ></Image>
           <View className='bookDetailsCoreRight'>
             <View className='bookDetailsName'>{this.state.bookName}</View>
-            <View className='bookDetailsPrize'>定价：<Text className='bookDetailsPrizeStyle'>￥{this.state.bookPrice}</Text></View>
-            <View className='bookDetailsMessage bookDetailsMessageFirst'>{this.state.bookAuthor}</View>
-            <View className='bookDetailsMessage'>{this.state.bookPublisher}</View>
-            <View className='bookDetailsMessage'>{this.state.bookPublishTime}</View>
-            <View className='bookDetailsMessage'>ISBN：{this.state.bookIsbn}</View>
+            <View className='bookDetailsPrize'>
+              定价：
+              <Text className='bookDetailsPrizeStyle'>
+                ￥{this.state.bookPrice}
+              </Text>
+            </View>
+            <View className='bookDetailsMessage bookDetailsMessageFirst'>
+              {this.state.bookAuthor}
+            </View>
+            <View className='bookDetailsMessage'>
+              {this.state.bookPublisher}
+            </View>
+            <View className='bookDetailsMessage'>
+              {this.state.bookPublishTime}
+            </View>
+            <View className='bookDetailsMessage'>
+              ISBN：{this.state.bookIsbn}
+            </View>
           </View>
         </View>
         <DetailsCard title='简介' content={this.state.bookIntroduction} />
@@ -92,16 +109,19 @@ export default class BookDetails extends Component {
             <Text className='sortButtonText'>分类</Text>
           </View>
           <View className='saveButton' onClick={this.starBook.bind(this)}>
-            {this.state.bookStar
-            ?<Image src={saveButtonTrue} className='saveButtonImage'></Image>
-            :<Image src={saveButtonFalse} className='saveButtonImage'></Image>
-            }
+            {this.state.bookStar ? (
+              <Image src={saveButtonTrue} className='saveButtonImage'></Image>
+            ) : (
+              <Image src={saveButtonFalse} className='saveButtonImage'></Image>
+            )}
             <Text className='saveButtonText'>收藏</Text>
           </View>
-          <View className='serviceButton'><Text className='serviceButtonText'>联系客服</Text></View>
+          <View className='serviceButton'>
+            <Text className='serviceButtonText'>联系客服</Text>
+          </View>
         </View>
         {/* 联系客服弹窗 */}
-        <Curtain  content='123123123115' />
+        <Curtain content='123123123115' />
       </View>
     )
   }

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Input, Button, Image } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import './BookCommendBodyImage.scss'
-import bookImage from '../../../images/bookDetails/book.png'
+// import bookImage from '../../../images/bookDetails/book.png'
 
 export default class BookCommendBodyImage extends Component {
   constructor(props) {
