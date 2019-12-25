@@ -8,6 +8,7 @@ import sortButton from '../../../images/bookDetails/sortButton.png'
 import DetailsCard from '../../../component/detailsCard/detailsCard'
 import Curtain from '../../../component/Curtain/Curtain'
 // 私有组件引入
+import Request from '../../../utils/request'
 
 export default class BookDetails extends Component {
   constructor(props) {
@@ -27,30 +28,24 @@ export default class BookDetails extends Component {
     this.componentWillMount = this.componentWillMount.bind(this)
   }
   componentWillMount() {
-    let cookie = Taro.getStorageSync('Cookies')
-    console.log(this.state.bookId) // 路由传过来的图书id
-    Taro.request({
-      method: 'POST',
-      url: `http://localhost:8080/book/${this.state.bookId}`,
-      mode: 'cors',
-      header: { Cookie: cookie, 'content-type': 'application/json' },
-      credentials: 'include',
-      success: res => {
+    Request.reqHC(`book/${this.state.bookId}`)
+      .then(res => {
+        console.log('图书信息请求成功书名：', res.data.value.name)
         this.setState({
-          bookName: res.name,
-          imagePath: res.coverPath,
-          bookPrice: res.price,
-          bookAuthor: res.author,
-          bookPublisher: res.publisher,
-          bookPublishTime: res.publishTime,
-          bookIsbn: res.isbn,
-          bookIntroduction: res.introduction,
-          bookStar: res.star
+          bookName: res.data.value.name,
+          imagePath: res.data.value.coverPath,
+          bookPrice: res.data.value.price,
+          bookAuthor: res.data.value.author,
+          bookPublisher: res.data.value.publisher,
+          bookPublishTime: res.data.value.publishTime,
+          bookIsbn: res.data.value.isbn,
+          bookIntroduction: res.data.value.introduction,
+          bookStar: res.data.value.star
         })
-      }
-    }).catch(() => {
-      console.log('图书信息未存在')
-    })
+      })
+      .catch(() => {
+        console.log('图书信息未存在')
+      })
   }
 
   componentDidMount() {}
@@ -71,6 +66,14 @@ export default class BookDetails extends Component {
   }
   // 收藏逻辑
   starBook() {}
+  // 联系客服弹窗
+  // 获取子组件对象
+  onRef(ref) {
+    this.child = ref
+  }
+  getService() {
+    this.child.onOpen()
+  }
   render() {
     return (
       <View className='bookDetailsBox'>
@@ -117,11 +120,11 @@ export default class BookDetails extends Component {
             <Text className='saveButtonText'>收藏</Text>
           </View>
           <View className='serviceButton'>
-            <Text className='serviceButtonText'>联系客服</Text>
+            <Text className='serviceButtonText' onClick={this.getService.bind(this)}>联系客服</Text>
           </View>
         </View>
         {/* 联系客服弹窗 */}
-        <Curtain content='123123123115' />
+        <Curtain content='123123123115' onRef={this.onRef.bind(this)} />
       </View>
     )
   }

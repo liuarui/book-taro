@@ -5,6 +5,7 @@ import bookImage from '../../../images/bookDetails/book.png'
 // import BookBox from '../../../component/bookBox/bookBox'
 // 私有组件引入
 import BookCommendBodyImage from './BookCommendBodyImage'
+import Request from '../../../utils/request'
 
 export default class IndexBookCommend extends Component {
   constructor(props) {
@@ -14,23 +15,24 @@ export default class IndexBookCommend extends Component {
     }
   }
   componentWillMount() {
-    // 获取推荐图书详情
-    let cookie = Taro.getStorageSync('Cookies')
-    Taro.request({
-      method: 'GET',
-      url: 'http://localhost:8080/recommend',
-      data: {
+    //   // 获取推荐图书详情
+    Request.reqHC(
+      'recommend',
+      {
         page: '0', // 当前页数
         size: '6' // 显示最多
       },
-      header: { Cookie: cookie, 'content-type': 'application/json' },
-      mode: 'cors',
-      credentials: 'include',
-      success: res => {
-        this.setState({
-          length: res.data.value
-        })
-      }
+      'GET'
+    ).then(res => {
+      console.log('推荐列表请求成功', res)
+      this.setState({
+        length: res.data.value
+      })
+    })
+  }
+  jumpCategory() {
+    Taro.navigateTo({
+      url: '/pages/category/Category'
     })
   }
   render() {
@@ -38,7 +40,12 @@ export default class IndexBookCommend extends Component {
       <View className='indexBookCommendBox'>
         <View className='indexBookCommendTitle'>
           <Text className='indexBookCommendTitleLeft'>图书推荐</Text>
-          {/* <Navigator url='/pages/category/Category' className="indexBookCommendTitleRight">查看更多</Navigator> */}
+          <Text
+            onClick={this.jumpCategory.bind(this)}
+            className='indexBookCommendTitleRight'
+          >
+            查看更多
+          </Text>
         </View>
         <View className='indexBookCommendBody'>
           {this.state.length.map(item => {

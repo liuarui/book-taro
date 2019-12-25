@@ -34,19 +34,14 @@ export default class UserLogin extends Taro.Component {
         'content-type': 'application/x-www-form-urlencoded'
       },
       mode: 'cors',
-      success: (res)=> {
-        console.log(res)
-      }
-      // credentials: 'omit'
+      credentials: 'include'
     }).then(res => {
-      console.log(res)
       let cookies = res.header['Set-Cookie'].replace(/,/g, ';')
-      console.log('=======', cookies)
       Taro.setStorageSync('Cookies', cookies)
       Taro.redirectTo({
         url: `/pages/login/login`
       })
-      console.log(res)
+      console.log('登陆请求成功Cookie为',cookies)
     })
   }
   render() {

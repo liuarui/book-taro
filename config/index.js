@@ -33,7 +33,7 @@ const config = {
     }
   },
   weapp: {
-    devServer: {port: 8766,host: "127.0.0.1"},
+    // devServer: {port: 8766,host: "127.0.0.1"},
     module: {
       postcss: {
         autoprefixer: {

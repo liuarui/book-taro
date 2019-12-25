@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input, Button } from '@tarojs/components'
+import { View, Input, Button, Text } from '@tarojs/components'
+import Curtain from '../../../component/Curtain/Curtain'
 import './indexNumberBox.scss'
 // Toast显示标志
 // let indexNumberToast = false
@@ -12,53 +13,57 @@ export default class IndexNumberBox extends Component {
     }
   }
   handleInput(event) {
+    console.log(event.target.value)
     this.setState({ videoNumberValue: event.target.value })
+    this.forceUpdate()
   }
   getVideoDetails() {
-    // let length = this.state.videoNumberValue.length
-    // console.log(this.state.videoNumberValue.length)
-    // console.log(indexNumberToast)
-    // if(length != '5'){
-    //   indexNumberToast = true
-    // }else {
-    //   indexNumberToast = false
-    // }
-    Taro.request({
-      url: 'http://localhost:8080/test',
-      data: {
-        foo: 'foo',
-        bar: 10
-      },
-      header: {
-        'content-type': 'application/json'
-      }
-    }).then(res => console.log(res.data))
-    Taro.navigateTo({
-      url: '/pages/index/videoDetails/videoDetails'
-    })
+    if (this.state.videoNumberValue.length != 5) {
+      this.child.onOpen()
+    } else {
+      Taro.navigateTo({
+        url: `/pages/index/videoDetails/videoDetails?videoId=${this.state.videoNumberValue}`
+      })
+    }
+  }
+  onRef(ref) {
+    this.child = ref
   }
   render() {
     return (
       <View className='indexNumberBox'>
         <View className='indexNumberTitle'>输入编码观看视频</View>
         <View className='indexNumberBody'>
-          <span>{this.state.videoNumberValue.slice(0, 1)}</span>
-          <span>{this.state.videoNumberValue.slice(1, 2)}</span>
-          <span>{this.state.videoNumberValue.slice(2, 3)}</span>
-          <span>{this.state.videoNumberValue.slice(3, 4)}</span>
-          <span>{this.state.videoNumberValue.slice(4, 5)}</span>
+          <Text className='indexNumberBodyBox indexNumberBodyBox1'>
+            {this.state.videoNumberValue.slice(0, 1)}
+          </Text>
+          <Text className='indexNumberBodyBox indexNumberBodyBox2'>
+            {this.state.videoNumberValue.slice(1, 2)}
+          </Text>
+          <Text className='indexNumberBodyBox indexNumberBodyBox3'>
+            {this.state.videoNumberValue.slice(2, 3)}
+          </Text>
+          <Text className='indexNumberBodyBox indexNumberBodyBox4'>
+            {this.state.videoNumberValue.slice(3, 4)}
+          </Text>
+          <Text className='indexNumberBodyBox indexNumberBodyBox5'>
+            {this.state.videoNumberValue.slice(4, 5)}
+          </Text>
           <Input
             className='indexNumberContent'
             type='number'
             maxLength='5'
-            onInput={this.handleInput}
+            onInput={this.handleInput.bind(this)}
             value={this.state.videoNumberValue}
           />
-          <Button className='indexNumberButton' onClick={this.getVideoDetails}>
+          <Button
+            className='indexNumberButton'
+            onClick={this.getVideoDetails.bind(this)}
+          >
             查询
           </Button>
-          {/* <View className={ indexNumberToast ? 'indexNumberToast' : 'ToastNo' } >请输入完整的图书编码</View> */}
         </View>
+        <Curtain content='请输入正确编号' onRef={this.onRef.bind(this)} />
       </View>
     )
   }

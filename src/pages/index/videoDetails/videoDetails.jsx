@@ -4,12 +4,27 @@ import './videoDetails.scss'
 // 公有组件引入
 import DetailsCard from '../../../component/detailsCard/detailsCard'
 // 私有组件引入
+import Request from '../../../utils/request'
+
 export default class VideoDetails extends Component {
-  config = {
-    navigationBarTitleText: '视频详情'
+  constructor(props) {
+    super(props)
+    this.state = {
+      videoId: this.$router.params.videoId
+    }
   }
 
-  // componentWillMount() {}
+  componentWillMount() {
+    console.log('视频id为:',this.state.videoId)
+    Request.reqHC(`book/${this.state.videoId}`)
+      .then(res => {
+        console.log('视频信息请求成功：', res.data.value.videos)
+        // this.setState({
+
+        // })
+      })
+      
+  }
 
   // componentDidMount() {}
 
@@ -18,7 +33,9 @@ export default class VideoDetails extends Component {
   // componentDidShow() {}
 
   // componentDidHide() {}
-
+  config = {
+    navigationBarTitleText: '视频详情'
+  }
   render() {
     return (
       <View className='videoDetailsBox'>

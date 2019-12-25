@@ -9,7 +9,6 @@ import IndexSwiper from './_component/indexSwiper'
 import IndexNumberBox from './_component/indexNumberBox'
 import IndexBookCommend from './_component/indexBookCommend'
 import BottomNav from '../../component/BottomNav/BottomNav'
-import Curtain from '../../component/Curtain/Curtain'
 
 export default class Index extends Component {
   constructor() {
@@ -42,7 +41,6 @@ export default class Index extends Component {
         <IndexSwiper />
         <IndexNumberBox />
         <IndexBookCommend />
-        <Curtain content='请输入正确编号' />
         <BottomNav pageNumber={0} />
       </View>
     )

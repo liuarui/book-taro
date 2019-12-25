@@ -10,14 +10,35 @@ import logo from '../../images/personalCenter/personalCenterLogo.png'
 import stateNo from '../../images/personalCenter/stateNo.png'
 import stateYes from '../../images/personalCenter/stateYes.png'
 
-import userImage from '../../images/personalCenter/userImage.png'
+// 私有方法引入
+import Request from '../../utils/request'
 
 export default class PersonalCenter extends Component {
-  config = {
-    navigationBarTitleText: '我的'
+  constructor() {
+    super(...arguments)
+    this.state = {
+      username: 'Eric',
+      avatarPath: '../../images/personalCenter/userImage.png',
+      userState: '-1'
+    }
   }
-
-  // componentWillMount() {}
+  componentWillMount() {
+    // 获取用户名和头像
+    Request.reqHC('user', null, 'GET').then(res => {
+      console.log('用户名称请求成功')
+      this.setState({
+        username: res.data.value.username,
+        avatarPath: res.data.value.avatarPath
+      })
+    })
+    // 获取用户认证状态
+    Request.reqHC('principal/status', null, 'GET').then(res => {
+      console.log('认证状态成功', res.data.value)
+      this.setState({
+        userState: res.data.value
+      })
+    })
+  }
 
   // componentDidMount() {}
 
@@ -31,21 +52,22 @@ export default class PersonalCenter extends Component {
       url: url
     })
   }
+  config = {
+    navigationBarTitleText: '我的'
+  }
   render() {
     return (
       <View className='personalCenter'>
         <View className='personalCenterTop'>
           <Image
             className='userImg'
-            src={userImage}
+            src={this.state.avatarPath}
             onClick={this.toPersonlChild.bind(
               this,
               '/pages/personalCenter/personalInfor/personalInfor'
             )}
           ></Image>
-          {/*这里放请求回来的图片*/}
-          <Text className='userName'>Eric</Text>
-          {/*这里放请求回来的名字*/}
+          <Text className='userName'>{this.state.username}</Text>
           {/* 这里直接用判断，从后台请求回来的状态来显示 */}
           {false ? (
             <Image className='userStateImage' src={stateYes}></Image>

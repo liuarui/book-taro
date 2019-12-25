@@ -8,7 +8,6 @@ export default class BookCommendBodyImage extends Component {
     super(props)
   }
   getBookDetails() {
-    console.log(this.props)
     Taro.navigateTo({
       url: `/pages/index/bookDetails/bookDetails?bookId=${this.props.bookId}`
     })

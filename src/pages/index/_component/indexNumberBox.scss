@@ -11,7 +11,7 @@
 .indexNumberBody {
   margin: 28px 30px 42px;
   position: relative;
-  > span {
+   .indexNumberBodyBox {
     position: absolute;
     display: block;
     height: 88px;
@@ -22,19 +22,19 @@
     line-height: 88px;
     text-align: center;
   }
-  > span:nth-child(1) {
+   .indexNumberBodyBox1 {
     left: 0;
   }
-  > span:nth-child(2) {
+   .indexNumberBodyBox2 {
     left: 108px;
   }
-  > span:nth-child(3) {
+   .indexNumberBodyBox3 {
     left: 216px;
   }
-  > span:nth-child(4) {
+   .indexNumberBodyBox4 {
     left: 324px;
   }
-  > span:nth-child(5) {
+   .indexNumberBodyBox5 {
     left: 432px;
   }
 }
@@ -42,8 +42,9 @@
   width: 1040px; // 宽度*2 
   height: 88px;
   display: inline-block;
+  color: rgba(0,0,0,0);
   margin-right: 190px; // 加大右边距
-  text-indent: 999px; // 缩进
+  // text-indent: 999px; // 缩进
   outline:none; // 移除边框
   margin-left: -100%; // 加注释的css是为了隐藏input
 }
