@@ -24,7 +24,7 @@ class App extends Component {
       // 个人信息块
       'pages/personalCenter/PersonalCenter',
       'pages/personalCenter/aboutUs/aboutUs',
-      'pages/personalCenter/myFavorite/myFavorite',
+      'pages/personalCenter/FavoriteCardList/FavoriteCardList',
       'pages/personalCenter/principalApprove/principalApprove',
       'pages/personalCenter/personalInfor/personalInfor',
     ],

@@ -1,0 +1,59 @@
+.bookDetailsCore {
+  height: 480px;
+  position: relative;
+  border-bottom: 20px solid #F5F5F5;
+
+  .bookDetailsImage {
+    width: 280px;
+    height: 379px;
+    position: absolute;
+    top: 50px;
+    left: 40px;
+  }
+
+  .bookDetailsCoreRight {
+    display: inline-block;
+    position: absolute;
+    top: 50px;
+    left: 356px;
+
+    .bookDetailsName {
+      margin-bottom: 26px;
+      width: 200px;
+      height: 56px;
+      font-size: 40px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(0, 0, 0, 1);
+      line-height: 56px;
+    }
+
+    .bookDetailsPrize {
+      font-size: 26px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(112, 112, 112, 1);
+      line-height: 37px;
+
+      .bookDetailsPrizeStyle {
+        color: #FF0000;
+        font-size: 40px;
+      }
+    }
+
+    .bookDetailsMessage {
+      width: 308px;
+      height: 37px;
+      font-size: 26px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(112, 112, 112, 1);
+      line-height: 37px;
+      margin-bottom: 16px;
+    }
+
+    .bookDetailsMessageFirst {
+      margin-top: 55px;
+    }
+  }
+}

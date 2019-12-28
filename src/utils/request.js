@@ -30,19 +30,22 @@ export default {
   //   })
   //   return value
   // },
-  reqHC(url,params = null,method = 'POST') {
+  reqHC(
+    url,
+    params = null,
+    method = 'POST',
+    header = { 'content-type': 'application/json' }
+  ) {
     let cookie = Taro.getStorageSync('Cookies')
-    return(
-    Taro.request({
+    return Taro.request({
       method: `${method}`,
       data: params,
       url: `http://localhost:8080/${url}`,
       mode: 'cors',
-      header: { Cookie: cookie, 'content-type': 'application/json' },
-      credentials: 'include',
+      header: { Cookie: cookie, ...header },
+      credentials: 'include'
     }).catch(() => {
-      console.log('请求发生错误检查错误信息')
+      console.log('请求发生错误，请检查错误信息')
     })
-    )
   }
 }

@@ -3,6 +3,7 @@ import { View, Text, Image } from '@tarojs/components'
 import './PersonalCenter.scss'
 // 公有组件引入
 import BottomNav from '../../component/BottomNav/BottomNav'
+import Curtain from '../../component/Curtain/Curtain'
 // 私有组件引入
 // 图片引入
 import logo from '../../images/personalCenter/personalCenterLogo.png'
@@ -40,17 +41,18 @@ export default class PersonalCenter extends Component {
     })
   }
 
-  // componentDidMount() {}
-
-  // componentWillUnmount() {}
-
-  // componentDidShow() {}
-
-  // componentDidHide() {}
   toPersonlChild(url) {
     Taro.navigateTo({
       url: url
     })
+  }
+  // 联系客服弹窗
+  // 获取子组件对象
+  onRef(ref) {
+    this.child = ref
+  }
+  getService() {
+    this.child.onOpen()
   }
   config = {
     navigationBarTitleText: '我的'
@@ -64,26 +66,27 @@ export default class PersonalCenter extends Component {
             src={this.state.avatarPath}
             onClick={this.toPersonlChild.bind(
               this,
-              '/pages/personalCenter/personalInfor/personalInfor'
+              `/pages/personalCenter/personalInfor/personalInfor?username=${this.state.username}&avatarPath=${this.state.avatarPath}`
             )}
           ></Image>
           <Text className='userName'>{this.state.username}</Text>
           {/* 这里直接用判断，从后台请求回来的状态来显示 */}
-          {false ? (
+          {this.state.userState === 1 ? (
             <Image className='userStateImage' src={stateYes}></Image>
           ) : (
             <Image className='userStateImage' src={stateNo}></Image>
           )}
           <Text
             className={
-              true ? 'userStateText' : 'userStateText userStateTextGray'
+              this.state.userState === 1
+                ? 'userStateText'
+                : 'userStateText userStateTextGray'
             }
           >
             园长
           </Text>
           {/* 这里直接用判断，从后台请求回来的状态来显示 */}
-          {// if(认证未成功)则执行以下逻辑
-          true ? (
+          {this.state.userState === 1 ? null : this.state.userState === 0 ? (
             <Text
               className='userRZZ'
               onClick={this.toPersonlChild.bind(
@@ -109,14 +112,17 @@ export default class PersonalCenter extends Component {
           className='personalCenterBody'
           onClick={this.toPersonlChild.bind(
             this,
-            '/pages/personalCenter/myFavorite/myFavorite'
+            '/pages/personalCenter/FavoriteCardList/FavoriteCardList'
           )}
         >
           <Image className='personalCenterBodyLogo' src={logo}></Image>
           <Text className='personalCenterBodyText'>我的收藏</Text>
           <Text className='personalCenterBodyLogo2'>`&gt;`</Text>
         </View>
-        <View className='personalCenterBody'>
+        <View
+          className='personalCenterBody'
+          onClick={this.getService.bind(this)}
+        >
           <Image className='personalCenterBodyLogo' src={logo}></Image>
           <Text className='personalCenterBodyText'>联系客服</Text>
           <Text className='personalCenterBodyLogo2'>`&gt;`</Text>
@@ -132,7 +138,8 @@ export default class PersonalCenter extends Component {
           <Text className='personalCenterBodyText'>关于我们</Text>
           <Text className='personalCenterBodyLogo2'>`&gt;`</Text>
         </View>
-        <View>弹窗块</View>
+        {/* 联系客服弹窗 */}
+        <Curtain content='123123123115' onRef={this.onRef.bind(this)} />
         <BottomNav pageNumber={2} />
       </View>
     )

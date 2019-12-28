@@ -20,7 +20,7 @@ export default class IndexBookCommend extends Component {
       'recommend',
       {
         page: '0', // 当前页数
-        size: '6' // 显示最多
+        size: `${this.props.size ? this.props.size : 6}` // 显示最多
       },
       'GET'
     ).then(res => {

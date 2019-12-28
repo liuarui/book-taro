@@ -9,6 +9,7 @@ import DetailsCard from '../../../component/detailsCard/detailsCard'
 import Curtain from '../../../component/Curtain/Curtain'
 // 私有组件引入
 import Request from '../../../utils/request'
+import VideoCatelog from './_component/videoCatelog'
 
 export default class BookDetails extends Component {
   constructor(props) {
@@ -23,7 +24,9 @@ export default class BookDetails extends Component {
       bookPublishTime: '出版时间：2018-04-01',
       bookIsbn: '9787533952099',
       bookIntroduction: '我是默认简介',
-      bookStar: false
+      bookStar: false,
+      videos: [],
+      videoSrc: ''
     }
     this.componentWillMount = this.componentWillMount.bind(this)
   }
@@ -40,21 +43,14 @@ export default class BookDetails extends Component {
           bookPublishTime: res.data.value.publishTime,
           bookIsbn: res.data.value.isbn,
           bookIntroduction: res.data.value.introduction,
-          bookStar: res.data.value.star
+          bookStar: res.data.value.star,
+          videos: res.data.value.videos
         })
       })
       .catch(() => {
         console.log('图书信息未存在')
       })
   }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
   config = {
     navigationBarTitleText: '图书详情'
   }
@@ -65,7 +61,13 @@ export default class BookDetails extends Component {
     })
   }
   // 收藏逻辑
-  starBook() {}
+  starBook() {
+    Request.reqHC(`star?bookId=${this.state.bookId}`).then(res => {
+      this.setState({
+        bookStar: res.data.value
+      })
+    })
+  }
   // 联系客服弹窗
   // 获取子组件对象
   onRef(ref) {
@@ -74,6 +76,15 @@ export default class BookDetails extends Component {
   getService() {
     this.child.onOpen()
   }
+  // // 获取视频目录子组件状态
+  // onRefCatelog(ref) {
+  //   this.childCatelog = ref
+  // }
+  // getVideoSrc() {
+  //   this.setState({
+  //     videoSrc:
+  //   })console.log(this.childCatelog.changeVideoSrc())
+  // }
   render() {
     return (
       <View className='bookDetailsBox'>
@@ -105,7 +116,7 @@ export default class BookDetails extends Component {
           </View>
         </View>
         <DetailsCard title='简介' content={this.state.bookIntroduction} />
-        <DetailsCard title='目录' content='我是目录' />
+        <VideoCatelog title='目录' catelog={this.state.videos} />
         <View className='bookDetailsBottomNav'>
           <View className='sortButton' onClick={this.toCategory}>
             <Image src={sortButton} className='sortButtonImage'></Image>
@@ -120,7 +131,12 @@ export default class BookDetails extends Component {
             <Text className='saveButtonText'>收藏</Text>
           </View>
           <View className='serviceButton'>
-            <Text className='serviceButtonText' onClick={this.getService.bind(this)}>联系客服</Text>
+            <Text
+              className='serviceButtonText'
+              onClick={this.getService.bind(this)}
+            >
+              联系客服
+            </Text>
           </View>
         </View>
         {/* 联系客服弹窗 */}

@@ -12,16 +12,6 @@ export default class AboutUs extends Component {
     navigationBarTitleText: '关于我们'
   }
 
-  // componentWillMount() {}
-
-  // componentDidMount() {}
-
-  // componentWillUnmount() {}
-
-  // componentDidShow() {}
-
-  // componentDidHide() {}
-
   render() {
     return (
       <View className='aboutUsBox'>

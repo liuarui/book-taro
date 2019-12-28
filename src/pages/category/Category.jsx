@@ -2,71 +2,104 @@ import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import './Category.scss'
+import Request from '../../utils/request'
 // 公有组件引入
 import SearchBox from '../../component/searchBox/searchBox'
 // 私有组件引入
 import BottomNav from '../../component/BottomNav/BottomNav'
+import CategoryCard from './_compenent/CategoryCard'
 
 export default class Category extends Component {
   constructor() {
     super(...arguments)
     this.state = {
-      current: 0
+      current: 0,
+      category: [], // 请求回来的数据
+      categoryBook: []
     }
+  }
+  componentWillMount() {
+    // 请求所有分类
+    Request.reqHC('category', null, 'GET').then(res => {
+      this.setState(
+        {
+          category: res.data.value
+        },
+        () => {
+          // 请求分类下所有图书
+          Request.reqHC(
+            `books?categoryId=${this.state.category[this.state.current].id}`,
+            null,
+            'GET'
+          ).then(value => {
+            this.setState({
+              categoryBook: value.data.value
+            })
+          })
+        }
+      )
+    })
   }
   config = {
     navigationBarTitleText: '图书'
   }
+  // 更换页面逻辑实现
   handleClick(value) {
     this.setState({
       current: value
     })
+    // 保证实时获取到当前目录id
+    this.forceUpdate()
+    Request.reqHC(
+      `books?categoryId=${this.state.category[this.state.current].id}`,
+      null,
+      'GET'
+    ).then(res => {
+      this.setState({
+        categoryBook: res.data.value
+      })
+    })
   }
-
   render() {
-    // const tabList = [
-    //   { title: '标签页1' },
-    //   { title: '标签页2' },
-    //   { title: '标签页3' }
-    // ]
     return (
       <View className='Category'>
         <SearchBox />
         <AtTabs
           current={this.state.current}
           scroll
-          height='200px'
+          height='750px'
           tabDirection='vertical'
-          tabList={[{ title: '图书1' }, { title: '图书2' }, { title: '图书3' }]}
+          tabList={this.state.category.map(value => {
+            return {
+              title: value.desc
+            }
+          })}
           onClick={this.handleClick.bind(this)}
         >
-          <AtTabsPane
-            tabDirection='vertical'
-            current={this.state.current}
-            index={0}
-          >
-            <View style='font-size:18px;text-align:center;height:200px;'>
-              标签页一的内容
-            </View>
-          </AtTabsPane>
-          <AtTabsPane
-            tabDirection='vertical'
-            current={this.state.current}
-            index={1}
-          >
-            <View style='font-size:18px;text-align:center;height:200px;'>
-              标签页二的内容
-            </View>
-          </AtTabsPane>
-          <AtTabsPane
-            tabDirection='vertical'
-            current={this.state.current}
-            index={2}
-          >
-            <View style='font-size:18px;text-align:center;height:200px;'>
-              标签页三的内容
-            </View>
-          </AtTabsPane>
+          {this.state.category.map((value, index) => {
+            return (
+              <AtTabsPane
+                tabDirection='vertical'
+                current={this.state.current}
+                index={index}
+                key={value.bookId}
+              >
+                <View style='height: 750px'>
+                  {this.state.categoryBook.map(cateIndex => {
+                    // 请求回来的数据块
+                    return (
+                      <CategoryCard
+                        key={cateIndex.name}
+                        bookName={cateIndex.name}
+                        bookId={cateIndex.id}
+                        imageUrl={cateIndex.coverPath}
+                      />
+                    )
+                  })}
+                </View>
+              </AtTabsPane>
+            )
+          })}
         </AtTabs>
         <BottomNav pageNumber={1} />
       </View>

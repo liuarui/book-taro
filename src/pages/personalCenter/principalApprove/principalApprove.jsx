@@ -1,6 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
 import { AtInput, AtForm, AtImagePicker, AtButton } from 'taro-ui'
+import Request from '../../../utils/request'
 import './principalApprove.scss'
 // 公有组件引入
 
@@ -12,7 +13,9 @@ export default class PrincipalApprove extends Component {
     this.state = {
       phoneNumber: '',
       authCode: '',
-      files: []
+      files: [],
+      codeButton: true,
+      reCodeTime: 5 //重发倒计时
     }
   }
   componentWillMount() {}
@@ -25,17 +28,20 @@ export default class PrincipalApprove extends Component {
 
   componentDidHide() {}
 
-  handleChange() {
-    // this.setState({
-    //   value
-    // })
-    // 在小程序中，如果想改变 value 的值，需要 `return value` 从而改变输入框的当前值
-    // return value
+  handleChange(value) {
+    this.setState({
+      phoneNumber: value
+    })
   }
   onChange(files) {
-    this.setState({
-      files
-    })
+    this.setState(
+      {
+        files
+      },
+      () => {
+        // console.log(this.state.files)
+      }
+    )
     imageFlag = true
   }
   onFail(mes) {
@@ -44,8 +50,47 @@ export default class PrincipalApprove extends Component {
   onImageClick(index, file) {
     console.log(index, file)
   }
-  onSubmit(event) {
-    console.log(event)
+  onSubmit() {
+    let cookie = Taro.getStorageSync('Cookies')
+    // 上传文件
+    Taro.uploadFile({
+      url: 'http://localhost:8080/principal',
+      filePath: this.state.files[0].url,
+      header: {
+        Cookie: cookie
+      },
+      name: 'license',
+      formData: {
+        phoneNumber: this.state.phoneNumber
+      }
+    }).then(res => {
+      console.log(res.header)
+      console.log('请求成功', res)
+    })
+  }
+  // 认证码逻辑
+  getCode() {
+    // 更换按钮状态
+    this.setState({
+      codeButton: false
+    })
+    let timeOut = setInterval(() => {
+      this.setState(
+        {
+          reCodeTime: this.state.reCodeTime - 1
+        },
+        () => {
+          if (this.state.reCodeTime <= 0) {
+            // 倒计时结束重置发送按钮
+            clearInterval(timeOut)
+            this.setState({
+              reCodeTime: 5,
+              codeButton: true
+            })
+          }
+        }
+      )
+    }, 1000)
   }
   config = {
     navigationBarTitleText: '园长认证'
@@ -75,11 +120,16 @@ export default class PrincipalApprove extends Component {
             value={this.state.authCode}
             onChange={this.handleChange.bind(this)}
           >
-            {false ? (
-              <Button className='messageButton'>获取验证码</Button>
+            {this.state.codeButton ? (
+              <Button
+                className='messageButton'
+                onClick={this.getCode.bind(this)}
+              >
+                获取验证码
+              </Button>
             ) : (
               <Button className='messageButton messageButtonGray' disabled>
-                已发送
+                已发送({this.state.reCodeTime})
               </Button>
             )}
           </AtInput>
