@@ -26,6 +26,7 @@ export default class VideoCatelog extends Component {
       () => {
         console.log(123, this.state.select)
         console.log(456, this.state.changeVideoSrc)
+        this.forceUpdate()
         // Taro.navigateTo({
         //   url: `/pages/index/videoDetails/videoDetails?bookId=${this.props.catelog[0].bookId}&changeVideoSrc=${this.state.changeVideoSrc}&select=${this.state.select}`
         // })
@@ -75,7 +76,7 @@ export default class VideoCatelog extends Component {
             }
             onClick={this.showDetailsContent.bind(this)}
           >
-            `&gt;`
+            &gt;
           </View>
         </View>
       </View>

@@ -26,6 +26,7 @@ class App extends Component {
       'pages/personalCenter/aboutUs/aboutUs',
       'pages/personalCenter/FavoriteCardList/FavoriteCardList',
       'pages/personalCenter/principalApprove/principalApprove',
+      'pages/personalCenter/principalApprove/principalApproveOK',
       'pages/personalCenter/personalInfor/personalInfor',
     ],
     window: {

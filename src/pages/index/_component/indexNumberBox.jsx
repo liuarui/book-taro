@@ -22,7 +22,7 @@ export default class IndexNumberBox extends Component {
       this.child.onOpen()
     } else {
       Taro.navigateTo({
-        url: `/pages/index/videoDetails/videoDetails?videoId=${this.state.videoNumberValue}`
+        url: `/pages/index/videoDetails/videoDetails?bookId=${this.state.videoNumberValue}`
       })
     }
   }

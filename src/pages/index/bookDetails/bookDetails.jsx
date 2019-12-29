@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { AtMessage } from 'taro-ui'
 import './bookDetails.scss'
 import saveButtonTrue from '../../../images/bookDetails/saveButtonTrue.png'
 import saveButtonFalse from '../../../images/bookDetails/saveButtonFalse.png'
@@ -25,15 +26,18 @@ export default class BookDetails extends Component {
       bookIsbn: '9787533952099',
       bookIntroduction: '我是默认简介',
       bookStar: false,
-      videos: [],
-      videoSrc: ''
+      videos: []
+      // videoSrc: ''
     }
     this.componentWillMount = this.componentWillMount.bind(this)
   }
   componentWillMount() {
-    Request.reqHC(`book/${this.state.bookId}`)
+    Request.reqHC(`book/${this.state.bookId}`, null, 'GET')
       .then(res => {
-        console.log('图书信息请求成功书名：', res.data.value.name)
+        Taro.atMessage({
+          message: `图书信息请求成功书名：${res.data.value.name}`,
+          type: 'success'
+        })
         this.setState({
           bookName: res.data.value.name,
           imagePath: res.data.value.coverPath,
@@ -48,7 +52,10 @@ export default class BookDetails extends Component {
         })
       })
       .catch(() => {
-        console.log('图书信息未存在')
+        Taro.atMessage({
+          message: `获取图书详情信息失败，请检查登录状态或网络连接`,
+          type: 'error'
+        })
       })
   }
   config = {
@@ -62,11 +69,22 @@ export default class BookDetails extends Component {
   }
   // 收藏逻辑
   starBook() {
-    Request.reqHC(`star?bookId=${this.state.bookId}`).then(res => {
-      this.setState({
-        bookStar: res.data.value
+    Request.reqHC(`star?bookId=${this.state.bookId}`)
+      .then(res => {
+        this.setState({
+          bookStar: res.data.value
+        })
+        Taro.atMessage({
+          message: `收藏成功！`,
+          type: 'success'
+        })
       })
-    })
+      .catch(() => {
+        Taro.atMessage({
+          message: `收藏操作失败，请检查登录状态或网络连接`,
+          type: 'error'
+        })
+      })
   }
   // 联系客服弹窗
   // 获取子组件对象
@@ -88,6 +106,7 @@ export default class BookDetails extends Component {
   render() {
     return (
       <View className='bookDetailsBox'>
+        <AtMessage />
         <View className='bookDetailsCore'>
           <Image
             src={this.state.imagePath}

@@ -75,7 +75,7 @@ export default class VideoCatelog extends Component {
             }
             onClick={this.showDetailsContent.bind(this)}
           >
-            `&gt;`
+            &gt;
           </View>
         </View>
       </View>

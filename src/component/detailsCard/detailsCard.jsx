@@ -40,7 +40,7 @@ export default class DetailsCard extends Component {
             }
             onClick={this.showDetailsContent.bind(this)}
           >
-            `&gt;`
+            &gt;
           </View>
         </View>
       </View>

@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtTabs, AtTabsPane } from 'taro-ui'
+import { AtTabs, AtTabsPane, AtMessage } from 'taro-ui'
 import './Category.scss'
 import Request from '../../utils/request'
 // 公有组件引入
@@ -14,31 +14,57 @@ export default class Category extends Component {
     super(...arguments)
     this.state = {
       current: 0,
-      category: [], // 请求回来的数据
-      categoryBook: []
+      category: [
+        { id: 1, desc: 'demoname' },
+      ], // 请求回来的数据
+      categoryBook: [
+        { id: 1, name: 'demoname', coverPath: 'demoData' },
+        { id: 2, name: 'demoname', coverPath: 'demoData' }
+      ]
     }
   }
   componentWillMount() {
     // 请求所有分类
-    Request.reqHC('category', null, 'GET').then(res => {
-      this.setState(
-        {
-          category: res.data.value
-        },
-        () => {
-          // 请求分类下所有图书
-          Request.reqHC(
-            `books?categoryId=${this.state.category[this.state.current].id}`,
-            null,
-            'GET'
-          ).then(value => {
-            this.setState({
-              categoryBook: value.data.value
-            })
+    Request.reqHC('category', null, 'GET')
+      .then(res => {
+        // 处理重定向302问题
+        if (res.data.value.length > 300) {
+          Taro.atMessage({
+            message: `获取分类信息失败，请检查登陆状态或网络连接`,
+            type: 'error'
           })
+        } else {
+          this.setState(
+            {
+              category: res.data.value
+            },
+            () => {
+              // 请求分类下所有图书
+              Request.reqHC(
+                `books?categoryId=${
+                  this.state.category[this.state.current].id
+                }`,
+                null,
+                'GET'
+              ).then(value => {
+                this.setState({
+                  categoryBook: value.data.value
+                })
+                Taro.atMessage({
+                  message: `获取分类信息成功`,
+                  type: 'success'
+                })
+              })
+            }
+          )
         }
-      )
-    })
+      })
+      .catch(() => {
+        Taro.atMessage({
+          message: `获取分类信息失败，请检查登陆状态或网络连接`,
+          type: 'error'
+        })
+      })
   }
   config = {
     navigationBarTitleText: '图书'
@@ -54,16 +80,24 @@ export default class Category extends Component {
       `books?categoryId=${this.state.category[this.state.current].id}`,
       null,
       'GET'
-    ).then(res => {
-      this.setState({
-        categoryBook: res.data.value
+    )
+      .then(res => {
+        this.setState({
+          categoryBook: res.data.value
+        })
       })
-    })
+      .catch(() => {
+        Taro.atMessage({
+          message: `获取分类信息失败，请检查登陆状态或网络连接`,
+          type: 'error'
+        })
+      })
   }
   render() {
     return (
       <View className='Category'>
-        <SearchBox />
+        <AtMessage />
+        <SearchBox jumpUrl='/pages/category/searchPage/searchPage' />
         <AtTabs
           current={this.state.current}
           scroll

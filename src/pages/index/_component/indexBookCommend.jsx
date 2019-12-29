@@ -1,7 +1,9 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { AtMessage } from 'taro-ui'
 import './indexBookCommend.scss'
 import bookImage from '../../../images/bookDetails/book.png'
+
 // import BookBox from '../../../component/bookBox/bookBox'
 // 私有组件引入
 import BookCommendBodyImage from './BookCommendBodyImage'
@@ -23,12 +25,25 @@ export default class IndexBookCommend extends Component {
         size: `${this.props.size ? this.props.size : 6}` // 显示最多
       },
       'GET'
-    ).then(res => {
-      console.log('推荐列表请求成功', res)
-      this.setState({
-        length: res.data.value
+    )
+      .then(res => {
+        if (res.data.value.length > 200) {
+          Taro.atMessage({
+            message: `获取分类信息失败，请检查登陆状态或网络连接`,
+            type: 'error'
+          })
+        }
+        console.log('推荐列表请求成功', res)
+        this.setState({
+          length: res.data.value
+        })
       })
-    })
+      .catch(() => {
+        Taro.atMessage({
+          message: `获取推荐图书信息失败，请检查登录状态或网络连接`,
+          type: 'error'
+        })
+      })
   }
   jumpCategory() {
     Taro.navigateTo({
@@ -38,6 +53,7 @@ export default class IndexBookCommend extends Component {
   render() {
     return (
       <View className='indexBookCommendBox'>
+        <AtMessage />
         <View className='indexBookCommendTitle'>
           <Text className='indexBookCommendTitleLeft'>图书推荐</Text>
           <Text

@@ -1,35 +1,6 @@
 import Taro from '@tarojs/taro'
 
 export default {
-  // requestGetCookie() {
-  //   let value
-  //   Taro.request({
-  //     method: 'POST',
-  //     url: 'http://localhost:8080/login',
-  //     data: {
-  //       username: this.state.username,
-  //       password: this.state.password
-  //     },
-  //     header: {
-  //       'content-type': 'application/x-www-form-urlencoded'
-  //     },
-  //     mode: 'cors',
-  //     success: (res)=> {
-  //       console.log(res)
-  //     }
-  //     // credentials: 'omit'
-  //   }).then(res => {
-  //     console.log(res)
-  //     let cookies = res.header['Set-Cookie'].replace(/,/g, ';')
-  //     console.log('=======', cookies)
-  //     Taro.setStorageSync('Cookies', cookies)
-  //     Taro.redirectTo({
-  //       url: `/pages/login/login`
-  //     })
-  //     value = res
-  //   })
-  //   return value
-  // },
   reqHC(
     url,
     params = null,
@@ -40,7 +11,7 @@ export default {
     return Taro.request({
       method: `${method}`,
       data: params,
-      url: `http://localhost:8080/${url}`,
+      url: `http://101.132.157.78/${url}`,
       mode: 'cors',
       header: { Cookie: cookie, ...header },
       credentials: 'include'

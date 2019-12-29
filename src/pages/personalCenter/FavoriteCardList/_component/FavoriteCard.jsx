@@ -11,7 +11,7 @@ export default class FavoriteCard extends Component {
   render() {
     return (
       <View className='favoriteCardBox' onClick={this.toBookDetails.bind(this)}>
-        <Image className='favoriteCardImage'>{this.props.imageUrl}</Image>
+        <Image className='favoriteCardImage'src={this.props.imageUrl}></Image>
         <View className='favoriteCardRight'>
           <View className='favoriteCardTitle'>{this.props.bookName}</View>
           <View className='favoriteCardAut'>{this.props.bookAut}</View>

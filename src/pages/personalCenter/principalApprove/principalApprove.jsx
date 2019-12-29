@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
-import { AtInput, AtForm, AtImagePicker, AtButton } from 'taro-ui'
+import { AtInput, AtForm, AtImagePicker, AtButton, AtMessage } from 'taro-ui'
 import Request from '../../../utils/request'
 import './principalApprove.scss'
 // 公有组件引入
@@ -53,26 +53,50 @@ export default class PrincipalApprove extends Component {
   onSubmit() {
     let cookie = Taro.getStorageSync('Cookies')
     // 上传文件
-    Taro.uploadFile({
-      url: 'http://localhost:8080/principal',
-      filePath: this.state.files[0].url,
-      header: {
-        Cookie: cookie
-      },
-      name: 'license',
-      formData: {
-        phoneNumber: this.state.phoneNumber
-      }
-    }).then(res => {
-      console.log(res.header)
-      console.log('请求成功', res)
-    })
+    if (this.state.files.length === 0 || this.state.phoneNumber.length === 0) {
+      Taro.atMessage({
+        message: `请将信息填写完全后再提交`,
+        type: 'error'
+      })
+    } else {
+      Taro.uploadFile({
+        url: 'http://101.132.157.78/principal',
+        filePath: this.state.files[0].url,
+        header: {
+          Cookie: cookie
+        },
+        name: 'license',
+        formData: {
+          phoneNumber: this.state.phoneNumber
+        }
+      })
+        .then(res => {
+          Taro.atMessage({
+            message: `提交信息成功`,
+            type: 'success'
+          })
+          Taro.navigateTo({
+            url: '/pages/personalCenter/PersonalCenter'
+          })
+          console.log('请求成功', res)
+        })
+        .catch(() => {
+          Taro.atMessage({
+            message: `提交信息失败，请检查网络连接或登陆状态`,
+            type: 'error'
+          })
+        })
+    }
   }
   // 认证码逻辑
   getCode() {
     // 更换按钮状态
     this.setState({
       codeButton: false
+    })
+    Taro.atMessage({
+      message: `获取验证码成功`,
+      type: 'success'
     })
     let timeOut = setInterval(() => {
       this.setState(
@@ -99,6 +123,7 @@ export default class PrincipalApprove extends Component {
   render() {
     return (
       <View className='principalApprove'>
+        <AtMessage />
         <AtForm onSubmit={this.onSubmit.bind(this)}>
           <AtInput
             clear

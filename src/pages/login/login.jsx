@@ -26,7 +26,7 @@ export default class Login extends Component {
     console.log(this.state.identity)
     if(this.state.identity === 'easyUser'){
       Taro.navigateTo({
-        url: '/pages/index/index'
+        url: `/pages/personalCenter/PersonalCenter?loginState=${true}`
       })
     } else if(this.state.identity === 'highUser') {
       Taro.navigateTo({

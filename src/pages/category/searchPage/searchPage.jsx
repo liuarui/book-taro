@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image, Input } from '@tarojs/components'
+import { AtMessage } from 'taro-ui'
 import './searchPage.scss'
 // 公有组件引入
 import IndexBookCommend from '../../index/_component/indexBookCommend'
@@ -18,12 +19,23 @@ export default class SearchPage extends Component {
     }
   }
   componentWillMount() {
-    Request.reqHC(`search?keyword=`).then(res => {
-      this.setState({
-        searchResult: res.data.value
+    Request.reqHC(`search?keyword=`)
+      .then(res => {
+        this.setState({
+          searchResult: res.data.value
+        })
+        Taro.atMessage({
+          message: `获取搜索信息成功`,
+          type: 'success'
+        })
+        // this.forceUpdate()
       })
-      // this.forceUpdate()
-    })
+      .catch(() => {
+        Taro.atMessage({
+          message: `获取搜索信息失败，请检查登录状态或网络连接`,
+          type: 'error'
+        })
+      })
   }
   handleInput(event) {
     this.setState(
@@ -47,6 +59,7 @@ export default class SearchPage extends Component {
   render() {
     return (
       <View className='Category'>
+        <AtMessage />
         <View className='searchBox'>
           <View className='searchBody'>
             <Image src={searchButton} className='searchButton' />
