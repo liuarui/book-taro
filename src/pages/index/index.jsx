@@ -36,7 +36,7 @@ export default class Index extends Component {
   }
   render() {
     return (
-      <View className='index'>
+      <View className='indexBox'>
         <SearchBox jumpUrl='/pages/category/searchPage/searchPage' />
         <IndexSwiper />
         <IndexNumberBox />
