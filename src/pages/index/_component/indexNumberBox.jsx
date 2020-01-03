@@ -21,7 +21,7 @@ export default class IndexNumberBox extends Component {
     if (this.state.videoNumberValue.length != 5) {
       this.child.onOpen()
     } else {
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: `/pages/index/videoDetails/videoDetails?bookId=${this.state.videoNumberValue}`
       })
     }

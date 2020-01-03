@@ -94,6 +94,12 @@ export default class BookDetails extends Component {
   getService() {
     this.child.onOpen()
   }
+  // 跳转主页按钮
+  toIndex(){
+    Taro.redirectTo({
+      url: '/pages/index/index'
+    })
+  }
   // // 获取视频目录子组件状态
   // onRefCatelog(ref) {
   //   this.childCatelog = ref
@@ -158,6 +164,7 @@ export default class BookDetails extends Component {
             </Text>
           </View>
         </View>
+        <View className='indexButton' onClick={this.toIndex.bind(this)}>首页</View>
         {/* 联系客服弹窗 */}
         <Curtain content='123123123115' onRef={this.onRef.bind(this)} />
       </View>

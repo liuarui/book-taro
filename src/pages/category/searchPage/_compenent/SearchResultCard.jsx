@@ -5,7 +5,7 @@ import './SearchResultCard.scss'
 export default class SearchResultCard extends Component {
   componentDidMount() {}
   getBookDetails() {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `/pages/index/bookDetails/bookDetails?bookId=${this.props.bookId}`
     })
   }

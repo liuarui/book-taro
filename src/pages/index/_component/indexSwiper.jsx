@@ -17,16 +17,16 @@ export default class IndexSwiper extends Component {
         indicatorDots
       >
         <SwiperItem>
-          <Image src={image1}></Image>
+          <Image className='swiperImage' src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image1}></Image>
+          <Image className='swiperImage' src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image1}></Image>
+          <Image className='swiperImage' src={image1}></Image>
         </SwiperItem>
         <SwiperItem>
-          <Image src={image1}></Image>
+          <Image className='swiperImage' src={image1}></Image>
         </SwiperItem>
       </Swiper>
     )

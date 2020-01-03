@@ -46,7 +46,7 @@ export default class IndexBookCommend extends Component {
       })
   }
   jumpCategory() {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: '/pages/category/Category'
     })
   }

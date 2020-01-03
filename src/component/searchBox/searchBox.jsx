@@ -8,7 +8,7 @@ export default class SearchBox extends Component {
     super(props)
   }
   toJumpUrl() {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: this.props.jumpUrl
     })
   }

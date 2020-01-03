@@ -7,7 +7,7 @@ export default class CategoryCard extends Component {
     super(props)
   }
   getBookDetails() {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `/pages/index/bookDetails/bookDetails?bookId=${this.props.bookId}`
     })
   }
